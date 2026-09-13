@@ -8,7 +8,7 @@ nbproject/build-impl.xml
 nbproject/genfiles.properties
 *.log
 .DS_Store
-
+.env
 # never commit real secrets - fill config.properties locally from the .example
 Medical_care/src/java/config.properties
 /Medical_care/nbproject/private/
