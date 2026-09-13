@@ -1,0 +1,35 @@
+# For the VPS option: `docker compose up -d` runs the app + a MySQL
+# database together. Fill in real values via a .env file next to this
+# (docker compose reads .env automatically) rather than hardcoding them here.
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: "jdbc:mysql://db:3306/"
+      DB_NAME: "key_agg"
+      DB_USER: "root"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      ADMIN_USERNAME: "${ADMIN_USERNAME}"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD}"
+      DROPBOX_APP_KEY: "${DROPBOX_APP_KEY}"
+      DROPBOX_APP_SECRET: "${DROPBOX_APP_SECRET}"
+      DROPBOX_REFRESH_TOKEN: "${DROPBOX_REFRESH_TOKEN}"
+      MAIL_ENABLED: "${MAIL_ENABLED:-false}"
+      MAIL_USERNAME: "${MAIL_USERNAME}"
+      MAIL_PASSWORD: "${MAIL_PASSWORD}"
+    depends_on:
+      - db
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_DATABASE: "key_agg"
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    ports:
+      - "3306:3306"
+volumes:
+  dbdata:

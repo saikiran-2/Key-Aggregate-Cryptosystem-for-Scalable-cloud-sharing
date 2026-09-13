@@ -1,0 +1,6 @@
+Medical_care/build
+Medical_care/dist
+Medical_care/nbproject/private
+*.war
+*.class
+.git

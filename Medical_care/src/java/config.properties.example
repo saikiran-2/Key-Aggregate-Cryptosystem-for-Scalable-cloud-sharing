@@ -1,0 +1,23 @@
+# Copy this to config.properties and fill in real values for local dev.
+# NEVER commit config.properties itself once it has real secrets in it -
+# see .gitignore and the README "Deploying" section for how production
+# deployments avoid this file entirely (environment variables instead).
+
+db.url=jdbc:mysql://localhost:3306/
+db.name=key_agg
+db.user=root
+db.password=CHANGE_ME
+
+admin.username=admin
+admin.password=CHANGE_ME
+
+mail.enabled=false
+mail.host=smtp.gmail.com
+mail.port=587
+mail.username=
+mail.password=
+
+dropbox.app.key=
+dropbox.app.secret=
+dropbox.refresh.token=
+dropbox.folder=/keyagg
